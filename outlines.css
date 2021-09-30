@@ -3,12 +3,13 @@ html {
 }
 
 header {
-    background-color: pink;
+    background-color: #77ACF2;
 }
 
 nav {
     text-align: right;
-    background-color: red;
+    background-color: #375070;
+    line-height: 200%;
 }
 
 body {
@@ -22,7 +23,7 @@ body {
 }
 
 main {
-    background-color: lightgreen;
+    background-color: #BDD3F0;
 }
 
 section {
@@ -35,8 +36,9 @@ h1 {
 }
 
 aside {
-    background-color: pink;
+    background-color: #95A6BD;
     text-align: right;
+    font-weight: lighter;
 }
 
 code {
@@ -58,7 +60,8 @@ img {
 
 footer {
     text-align: center;
-    background-color: red;
+    background-color: #375070;
+    line-height: 250%;
 }
 
 h4 {
@@ -75,13 +78,20 @@ p {
 
 dd {
     margin-left: 30px;
+    text-transform: capitalize;
 }
 
 dt {
     margin-left: 15px;
+    text-transform: uppercase;
 }
 
 q {
     display: block;
     margin: 1em 40px;
+    white-space: normal;
+}
+
+.ghost {
+    display: none;
 }
