@@ -17,8 +17,6 @@ body {
 .main_photo {
     position: absolute;
     padding: 34vh 0 0 152vh;
-    max-width: 100%;
-    height: auto;
 }
 
 .grid {
@@ -40,11 +38,9 @@ body {
     grid-column: auto / span 3;
 }
 
-@media screen and (min-device-width: 360px) {
+@media screen and (max-device-width: 360px) {
     .main_photo {
-        position: absolute;
-        padding: 10px 8px;
-        max-width: 100%;
+        width: 100%;
         height: auto;
     }
 }
