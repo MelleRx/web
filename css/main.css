@@ -17,8 +17,6 @@ body {
 .main_photo {
     position: absolute;
     padding: 34vh 0 0 152vh;
-    max-width: 100%;
-    height: auto;
 }
 
 .grid {
@@ -43,6 +41,7 @@ body {
 @media only screen and (max-width : 320px) {
     .main_photo {
         position: absolute;
+        padding: 10px 8px;
         max-width: 100%;
         height: auto;
     }
