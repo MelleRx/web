@@ -46,6 +46,16 @@ body {
         height: auto;
     }
 }
+
+@media only screen and (max-width : 480px) {
+    .main_photo {
+        position: absolute;
+        padding: 10px 8px;
+        max-width: 100%;
+        height: auto;
+    }
+}
+
 /*
 .contact_bar {
     padding: 95px 0 0 0;
