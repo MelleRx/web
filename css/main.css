@@ -1,0 +1,69 @@
+@font-face {
+    src: url("../fonts/Rubik/Rubik.ttf") format("truetype");
+    font-family: "Rubik";
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Rubik", serif;
+    background: linear-gradient(180deg, #463F3F 0%, rgba(87, 35, 39, 0.666667) 33%, rgba(255, 255, 255, 0) 100%, #FFFFFF 100%);
+}
+
+.main_photo {
+    position: absolute;
+    padding: 34vh 0 0 152vh;
+}
+
+.grid {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(12,1fr);
+    padding: 20px 0 0 15px;
+}
+.box {
+    border: 1px solid #888;
+    padding: 20px;
+}
+
+.box:nth-child(2n) {
+    background: antiquewhite;
+    grid-column: auto / span 4;
+}
+.box:nth-child(2n+1) {
+    grid-column: auto / span 3;
+}
+/*
+.contact_bar {
+    padding: 95px 0 0 0;
+}
+
+.contact_bar > ul > li {
+    display: block;
+    width: 75px;
+    height: 75px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    list-style-type: none;
+    margin: 20px;
+
+}
+
+.inst {
+    width: 60px;
+    padding: 10px 0 0 0;
+}
+
+.vk {
+    width: 68px;
+}
+
+.git {
+    width: 64px;
+}
+
+ */
