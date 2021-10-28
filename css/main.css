@@ -38,10 +38,17 @@ body {
     grid-column: auto / span 3;
 }
 
-@media screen and (max-device-width: 360px) {
+@media screen and (max-width: 360px) {
     .main_photo {
+        position: absolute;
         width: 100%;
         height: auto;
+        padding: 60px 0 0 15px;
+    }
+
+    .box:nth-child(2n) {
+        background: aquamarine;
+        grid-column: auto / span 4;
     }
 }
 
