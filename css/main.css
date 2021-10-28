@@ -38,16 +38,7 @@ body {
     grid-column: auto / span 3;
 }
 
-@media only screen and (max-width : 320px) {
-    .main_photo {
-        position: absolute;
-        padding: 10px 8px;
-        max-width: 100%;
-        height: auto;
-    }
-}
-
-@media only screen and (max-width : 480px) {
+@media screen and (max-width: 360px) {
     .main_photo {
         position: absolute;
         padding: 10px 8px;
