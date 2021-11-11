@@ -1,0 +1,18 @@
+body {
+    min-height: 100vh;
+    font-family: "Rubik", serif;
+    background: linear-gradient(180deg, #463F3F 0%, rgba(87, 35, 39, 0.666667) 33%, rgba(255, 255, 255, 0) 100%, #FFFFFF 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    padding: 100px;
+}
+
+a.active {
+    color: black;
+    background-color: #FFFFFF;
+    border-radius: 92px;
+}
