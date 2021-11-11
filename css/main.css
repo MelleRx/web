@@ -14,71 +14,72 @@ body {
     background: linear-gradient(180deg, #463F3F 0%, rgba(87, 35, 39, 0.666667) 33%, rgba(255, 255, 255, 0) 100%, #FFFFFF 100%);
 }
 
-.main_photo {
-    position: absolute;
-    padding: 34vh 0 0 152vh;
+
+.main_photo_block {
+    display: flex;
+    justify-content: flex-end;
 }
 
-.grid {
+.main_table {
+    align-items: center;
+    justify-content: center;
+}
+
+.table {
     display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(12,1fr);
-    padding: 20px 0 0 15px;
-}
-.box {
-    border: 1px solid #888;
-    padding: 20px;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 100px;
+
+    margin-bottom: 20px;
 }
 
-.box:nth-child(2n) {
-    background: antiquewhite;
-    grid-column: auto / span 4;
+.table-row {
+    display: contents;
 }
-.box:nth-child(2n+1) {
-    grid-column: auto / span 3;
+
+.table-row:nth-child(2n) .table-item {
+    color: #000;
+}
+
+.table-row:nth-child(2n + 1) .table-item {
+    background: #7c7c7c;
+}
+
+.table-row:nth-child(1) .table-item {
+    color: rgb(200 200 200);
+    background-color: transparent;
+}
+
+.table-item {
+    text-align: center;
+    font-size: 1.5rem;
+    align-self: center;
+    gap: 0;
+    height: 100px;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-transform: lowercase;
+}
+
+.table-item > span {
+    position: absolute;
+    color: #fff;
+    font-size: 2rem;
+}
+
+.table-item > img{
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+    object-position: center;
 }
 
 @media screen and (max-width: 360px) {
-    .main_photo {
-        position: absolute;
-        width: 100%;
-        height: auto;
-        padding: 60px 0 0 15px;
-    }
-
-    .box:nth-child(2n) {
+    .table-row:nth-child(2n + 1) .table-item {
         background: aquamarine;
-        grid-column: auto / span 4;
     }
 }
-
-/*
-.contact_bar {
-    padding: 95px 0 0 0;
-}
-
-.contact_bar > ul > li {
-    display: block;
-    width: 75px;
-    height: 75px;
-    background: #FFFFFF;
-    border-radius: 50%;
-    list-style-type: none;
-    margin: 20px;
-
-}
-
-.inst {
-    width: 60px;
-    padding: 10px 0 0 0;
-}
-
-.vk {
-    width: 68px;
-}
-
-.git {
-    width: 64px;
-}
-
- */
