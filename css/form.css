@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.app {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.week {
+    display: flex;
+    overflow-x: auto;
+    flex-grow: 1;
+}
+
+.day-name {
+    font-weight: bold;
+
+    font-size: 32px;
+    align-self: flex-start;
+}
+
+.day-list {
+    padding: 10px 0 0 0;
+
+}
+
+.day {
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    margin: 0 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    line-break: anywhere;
+
+    min-width: 315px;
+    flex-basis: 400px;
+}
+
+.day form {
+    margin: 15px 0 0 0;
+
+    border: 2px solid #000;
+}
+
+.day input {
+    width: 100%;
+
+    height: 50px;
+    outline: none;
+    border-radius: 0;
+
+    border: none;
+}
+
+.day-item {
+    font-size: 20px;
+
+    border: 2px solid #000;
+
+    margin-bottom: 5px;
+
+
+    cursor: pointer;
+    transition: all 0.1s linear;
+
+    display: flex;
+}
+
+.day-item__index {
+    padding: 0 20px;
+
+    text-align: center;
+    line-height: 50px;
+
+    background-color: #000;
+    color: #fff;
+}
+
+.day-item__content {
+    flex: 1;
+    padding: 10px 10px;
+}
+
+.day-item:hover {
+    transform: scale(1.04);
+}
+
+#settings {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+    padding: 20px 0;
+}
+
+.settings-wrapper {
+    margin: 0 35px;
+}
+
+.form-item {
+    display: flex;
+}
+
+.form-item:nth-of-type(2n) {
+    margin-top: 10px;
+}
+
+.form-item label {
+    margin: 0 10px 0 0;
+
+    text-transform: lowercase;
+    font-size: 14px;
+
+    color: #000;
+    font-weight: 600;
+}
+
+.form-item select {
+    flex: 1;
+}
+
+#settings input[type="submit"] {
+    width: 150px;
+    height: 50px;
+
+    border-radius: 0;
+
+    border: 2px solid #000;
+    background: #e74c3c;
+
+    color: #fff;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease-in;
+}
+
+#settings input[type="submit"]:hover {
+    background-color: #c0392b;
+}
+
+.day input {
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.day input:disabled {
+    background: #ccc;
+}
