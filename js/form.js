@@ -1,111 +1,130 @@
-let week = [];
+const Form = function(){
+    this.week = [];
 
-let settings = {
-    sub: 3,
-    days: 5
+    this.settings = {
+        sub: 3,
+        days: 5
+    };
+
+    this.DOM = {
+        week: null,
+        settingsForm: null
+    };
+
+    this.load();
+    this.getDOM();
+    this.initDOM();
+    this.checkDisable();
+}
+
+Form.prototype.load = function(){
+    this.settings = JSON.parse(localStorage.getItem('settings')) || this.settings;
+
+    this.week = JSON.parse(localStorage.getItem('week')) || this.week;
 };
 
-let DOM = {
-    week: null,
-    settingsForm: null,
-}
+Form.prototype.save = function(){
+    localStorage.setItem('settings', JSON.stringify(this.settings));
+    localStorage.setItem('week', JSON.stringify(this.week));
+};
 
-function getDOM() {
-    DOM.week = document.querySelector(".week");
+Form.prototype.getDOM = function(){
+    let handler = event => {
+        event.preventDefault();
 
-    DOM.settingsForm = document.querySelector("#settings");
-    DOM.settingsForm.addEventListener("submit", settingsHandler);
-}
+        this.settings.sub = parseInt(this.DOM.settingsForm.querySelector('select[name="amount-subjects"]').value);
+        this.settings.days = parseInt(this.DOM.settingsForm.querySelector('select[name="amount-day"]').value);
 
-function settingsHandler(event){
-    event.preventDefault();
+        this.week = new Array(this.settings.days).fill(0).map(_ => []);
 
-    settings.sub = parseInt(DOM.settingsForm.querySelector('select[name="amount-subjects"]').value);
-    settings.days = parseInt(DOM.settingsForm.querySelector('select[name="amount-day"]').value);
-
-    week = new Array(settings.days).fill(0).map(_ => []);
-
-    save();
-    render();
-}
-
-function add(event) {
-    event.preventDefault();
-    let day = parseInt(event.target.dataset.day);
-
-    let text = event.target.querySelector("input").value;
-
-    if (text.replace(/ /g, '') === '') {
-        return;
+        this.save();
+        this.initDOM();
     }
 
-    week[day].push(text);
+    this.DOM.week = document.querySelector(".week");
 
-    save();
-    render();
-}
+    this.DOM.settingsForm = document.querySelector("#settings");
+    this.DOM.settingsForm.addEventListener("submit", handler);
+};
 
+Form.prototype.initDOM = function(){
+    this.DOM.settingsForm.querySelector('select[name="amount-subjects"]').value = this.settings.sub;
+    this.DOM.settingsForm.querySelector('select[name="amount-day"]').value = this.settings.days;
 
-function render() {
-    let dayNames = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+    this.DOM.week.innerHTML = "";
 
-    DOM.week.innerHTML = "";
-
-    week.forEach((dayItem, weekIndex) => {
+    this.week.forEach((dayItem, index) => {
         let day = document.createElement("div");
 
         day.className = 'day';
 
         day.innerHTML = `
             <div class="day-name">
-                ${dayNames[weekIndex]}
+                ${["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"][index]}
             </div>
-            <form data-day="${weekIndex}">
-                <input placeholder="Наименование занятия" type="text" name="text" ${dayItem.length === settings.sub ? 'disabled' : ''}>
+            <form data-day="${index}">
+                <input placeholder="Текст задания" type="text" name="text">
             </form>
             <div class="day-list">
                 
             </div>
         `;
 
-        day.querySelector("form").addEventListener("submit", add);
+        dayItem.forEach((actionItem, index) => {
+            day.querySelector(".day-list").appendChild(this.createActionNode(index, actionItem));
+        });
 
-        dayItem.forEach((actionItem, dayIndex) => {
-            let action = document.createElement("div");
+        day.querySelector("form").addEventListener("submit", this.add.bind(this));
 
-            action.className = "day-item";
-
-            action.innerHTML = `
-                <div class="day-item__index"><span>${dayIndex + 1}</span></div>
-                <div class="day-item__content">${actionItem}</div>
-            `;
-
-            action.addEventListener("click", () => {
-                week[weekIndex].splice(dayIndex, 1);
-                save();
-                render();
-            })
-
-            day.querySelector(".day-list").appendChild(action);
-        })
-        DOM.week.appendChild(day);
+        this.DOM.week.appendChild(day);
     });
+};
+
+Form.prototype.createActionNode = function(index, content){
+
+    let action = document.createElement("div");
+    action.className = "day-item";
+
+    action.innerHTML = `
+        <div class="day-item__index">   </div>
+        <div class="day-item__content"></div>
+    `;
+
+    action.querySelector('.day-item__index').appendChild(document.createTextNode(++index));
+    action.querySelector('.day-item__content').appendChild(document.createTextNode(content));
+
+    return action;
 }
 
-function save() {
-    localStorage.setItem('settings', JSON.stringify(settings));
-    localStorage.setItem('week', JSON.stringify(week));
-}
+Form.prototype.add = function(event){
+    event.preventDefault();
 
+    let day = parseInt(event.target.dataset.day);
+    let text = event.target.querySelector("input").value;
+
+    if(text.replace(/ /g, '') === ''){
+        return;
+    }
+
+    this.week[day].push(text);
+
+    this.DOM.week.querySelectorAll('.day')[day].appendChild(this.createActionNode(this.week[day].length - 1, text));
+
+    this.checkDisable();
+    this.save();
+
+    event.target.querySelector('input').value = "";
+    event.target.querySelector('input').blur();
+};
+
+Form.prototype.checkDisable = function(){
+    this.week.forEach((weekItem, index) => {
+        if(weekItem.length === this.settings.sub){
+            this.DOM.week.querySelectorAll('.day')[index].querySelector('input').disabled = true;
+        }
+    });
+};
 
 window.addEventListener("load", () => {
-    week = localStorage.getItem('week') ? JSON.parse(localStorage.getItem('week')) : week;
-    settings = localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings')) : settings;
-
-    getDOM();
-
-    DOM.settingsForm.querySelector('select[name="amount-subjects"]').value = settings.sub;
-    DOM.settingsForm.querySelector('select[name="amount-day"]').value = settings.days;
-
-    render();
+    new Form();
 })
