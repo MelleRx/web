@@ -83,6 +83,18 @@ a.active {
     object-position: center;
 }
 
+.error {
+    display: none;
+    text-align: center;
+    font-size: 2.5rem;
+    color: red;
+}
+
+.loader {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
 @media screen and (max-width: 360px) {
     .table-row:nth-child(2n + 1) .table-item {
         background: aquamarine;
