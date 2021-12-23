@@ -90,9 +90,25 @@ a.active {
     color: red;
 }
 
+.loader img {
+    width: 100px;
+    height: 100px;
+}
+
 .loader {
-    text-align: center;
-    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.swiper-slide img {
+    object-fit: contain;
+    width: 200px;
+    height: 200px;
 }
 
 @media screen and (max-width: 360px) {
