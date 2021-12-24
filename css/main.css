@@ -112,7 +112,7 @@ a.active {
 }
 
 .swiper-pagination-bullet { 
-    color: red;
+    background-color: red;
 }
 
 @media screen and (max-width: 360px) {
